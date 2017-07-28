@@ -35,6 +35,7 @@ public class AttractionListActivity extends BaseActivity
     RecyclerView rvAttractions;
 
     private AttractionAdapter mAttractionAdapter;
+
     private AttractionsModel mAttractionsModel;
 
     @Override
@@ -57,6 +58,7 @@ public class AttractionListActivity extends BaseActivity
         rvAttractions.setLayoutManager(verticalSingleColumnLM);
 
         mAttractionsModel = ViewModelProviders.of(this).get(AttractionsModel.class);
+        mAttractionsModel.initDatabase(getApplicationContext());
         mAttractionsModel.getAttractions().observe(this, new Observer<List<AttractionVO>>() {
             @Override
             public void onChanged(@Nullable List<AttractionVO> attractionVOs) {
