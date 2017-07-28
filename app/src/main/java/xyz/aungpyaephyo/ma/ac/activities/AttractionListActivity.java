@@ -1,18 +1,20 @@
 package xyz.aungpyaephyo.ma.ac.activities;
 
+import android.app.ActionBar;
+import android.arch.lifecycle.Observer;
+import android.arch.lifecycle.ViewModelProviders;
 import android.os.Bundle;
+import android.support.annotation.Nullable;
 import android.support.design.widget.Snackbar;
-import android.support.v7.app.ActionBar;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageView;
+import android.widget.Toolbar;
 
-import org.greenrobot.eventbus.Subscribe;
-import org.greenrobot.eventbus.ThreadMode;
+import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -21,7 +23,6 @@ import xyz.aungpyaephyo.ma.ac.R;
 import xyz.aungpyaephyo.ma.ac.adapters.AttractionAdapter;
 import xyz.aungpyaephyo.ma.ac.data.models.AttractionsModel;
 import xyz.aungpyaephyo.ma.ac.data.vo.AttractionVO;
-import xyz.aungpyaephyo.ma.ac.events.DataEvent;
 import xyz.aungpyaephyo.ma.ac.viewholders.AttractionViewHolder;
 
 public class AttractionListActivity extends BaseActivity
@@ -34,6 +35,7 @@ public class AttractionListActivity extends BaseActivity
     RecyclerView rvAttractions;
 
     private AttractionAdapter mAttractionAdapter;
+    private AttractionsModel mAttractionsModel;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -41,9 +43,9 @@ public class AttractionListActivity extends BaseActivity
         setContentView(R.layout.activity_attraction_list);
         ButterKnife.bind(this, this);
 
-        setSupportActionBar(toolbar);
+        setActionBar(toolbar);
 
-        ActionBar actionBar = getSupportActionBar();
+        ActionBar actionBar = getActionBar();
         if (actionBar != null) {
             actionBar.setTitle(getString(R.string.app_title_mm));
         }
@@ -53,6 +55,14 @@ public class AttractionListActivity extends BaseActivity
 
         LinearLayoutManager verticalSingleColumnLM = new LinearLayoutManager(getApplicationContext(), LinearLayoutManager.VERTICAL, false);
         rvAttractions.setLayoutManager(verticalSingleColumnLM);
+
+        mAttractionsModel = ViewModelProviders.of(this).get(AttractionsModel.class);
+        mAttractionsModel.getAttractions().observe(this, new Observer<List<AttractionVO>>() {
+            @Override
+            public void onChanged(@Nullable List<AttractionVO> attractionVOs) {
+                mAttractionAdapter.setNewData(attractionVOs);
+            }
+        });
     }
 
     @Override
@@ -88,8 +98,10 @@ public class AttractionListActivity extends BaseActivity
                 .setAction("Action", null).show();
     }
 
+    /*
     @Subscribe(threadMode = ThreadMode.MAIN)
     public void onAttractionsLoadedEvent(DataEvent.AttractionsLoadedEvent event) {
         mAttractionAdapter.setNewData(event.getAttractionList());
     }
+    */
 }
