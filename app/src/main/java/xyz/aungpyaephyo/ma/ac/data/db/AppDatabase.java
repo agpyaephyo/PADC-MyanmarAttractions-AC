@@ -22,9 +22,8 @@ import android.arch.persistence.room.RoomDatabase;
 import android.content.Context;
 
 import xyz.aungpyaephyo.ma.ac.data.vo.AttractionVO;
-import xyz.aungpyaephyo.ma.ac.data.vo.ImageInAttractionVO;
 
-@Database(entities = {AttractionVO.class, ImageInAttractionVO.class}, version = 3)
+@Database(entities = {AttractionVO.class}, version = 8)
 public abstract class AppDatabase extends RoomDatabase {
 
     private static final String DB_NAME = "PADC-MA-AC.DB";
@@ -32,7 +31,6 @@ public abstract class AppDatabase extends RoomDatabase {
     private static AppDatabase INSTANCE;
 
     public abstract AttractionsDao attractionsDao();
-    public abstract ImageInAttractionsDao imagesInAttractionsDao();
 
     public static AppDatabase getInMemoryDatabase(Context context) {
         if (INSTANCE == null) {

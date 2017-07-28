@@ -20,6 +20,9 @@ public interface AttractionsDao {
     @Insert(onConflict = OnConflictStrategy.IGNORE)
     long insertAttraction(AttractionVO attraction);
 
+    @Insert(onConflict = OnConflictStrategy.IGNORE)
+    long[] insertAttractions(AttractionVO... attractions);
+
     @Query("SELECT * FROM attractions")
     LiveData<List<AttractionVO>> getAllAttractions();
 

@@ -59,7 +59,7 @@ public class AttractionListActivity extends BaseActivity
 
         mAttractionsModel = ViewModelProviders.of(this).get(AttractionsModel.class);
         mAttractionsModel.initDatabase(getApplicationContext());
-        mAttractionsModel.getAttractions(this).observe(this, new Observer<List<AttractionVO>>() {
+        mAttractionsModel.getAttractions().observe(this, new Observer<List<AttractionVO>>() {
             @Override
             public void onChanged(@Nullable List<AttractionVO> attractionVOs) {
                 mAttractionAdapter.setNewData(attractionVOs);
