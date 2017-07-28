@@ -13,6 +13,5 @@ public class MAApp extends Application {
     @Override
     public void onCreate() {
         super.onCreate();
-        AttractionsModel.getInstance().loadAttractions();
     }
 }
