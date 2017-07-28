@@ -10,9 +10,10 @@ import xyz.aungpyaephyo.ma.ac.data.models.AttractionsModel;
 
 public class MAApp extends Application {
 
+    public static final String TAG = "MAApp";
+
     @Override
     public void onCreate() {
         super.onCreate();
-        AttractionsModel.getInstance().loadAttractions();
     }
 }

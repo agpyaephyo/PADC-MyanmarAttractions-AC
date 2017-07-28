@@ -1,5 +1,6 @@
 package xyz.aungpyaephyo.ma.ac.activities;
 
+import android.arch.lifecycle.LifecycleActivity;
 import android.support.v7.app.AppCompatActivity;
 
 import org.greenrobot.eventbus.EventBus;
@@ -10,7 +11,7 @@ import org.greenrobot.eventbus.ThreadMode;
  * Created by aung on 7/28/17.
  */
 
-public abstract class BaseActivity extends AppCompatActivity {
+public abstract class BaseActivity extends LifecycleActivity {
 
     @Override
     protected void onStart() {
