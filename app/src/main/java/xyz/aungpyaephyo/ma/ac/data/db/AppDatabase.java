@@ -32,7 +32,7 @@ public abstract class AppDatabase extends RoomDatabase {
 
     public abstract AttractionsDao attractionsDao();
 
-    public static AppDatabase getInMemoryDatabase(Context context) {
+    public static AppDatabase getAttractionsDatabase(Context context) {
         if (INSTANCE == null) {
             INSTANCE =
                     Room.databaseBuilder(context.getApplicationContext(), AppDatabase.class, DB_NAME)

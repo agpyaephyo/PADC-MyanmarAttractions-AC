@@ -1,6 +1,5 @@
 package xyz.aungpyaephyo.ma.ac.data.models;
 
-import android.arch.lifecycle.LifecycleOwner;
 import android.arch.lifecycle.LiveData;
 import android.arch.lifecycle.ViewModel;
 import android.content.Context;
@@ -11,6 +10,7 @@ import org.greenrobot.eventbus.Subscribe;
 import org.greenrobot.eventbus.ThreadMode;
 
 import java.util.List;
+import java.util.Map;
 
 import xyz.aungpyaephyo.ma.ac.MAApp;
 import xyz.aungpyaephyo.ma.ac.data.db.AppDatabase;
@@ -28,6 +28,8 @@ public class AttractionsModel extends ViewModel {
     private AttractionDataAgent mDataAgent;
     private AppDatabase mAppDatabase;
 
+    private LiveData<Map<String, AttractionVO>> mAttractionMapLiveData;
+
     public AttractionsModel() {
         mDataAgent = RetrofitDataAgent.getInstance();
         EventBus.getDefault().register(this);
@@ -36,7 +38,7 @@ public class AttractionsModel extends ViewModel {
     }
 
     public void initDatabase(Context context) {
-        mAppDatabase = AppDatabase.getInMemoryDatabase(context);
+        mAppDatabase = AppDatabase.getAttractionsDatabase(context);
     }
 
     public LiveData<List<AttractionVO>> getAttractions() {
