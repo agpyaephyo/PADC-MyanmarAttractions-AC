@@ -1,6 +1,7 @@
 package xyz.aungpyaephyo.ma.ac;
 
 import android.app.Application;
+import android.arch.lifecycle.ViewModelProviders;
 
 import xyz.aungpyaephyo.ma.ac.data.models.AttractionsModel;
 
@@ -16,4 +17,8 @@ public class MAApp extends Application {
     public void onCreate() {
         super.onCreate();
     }
+
+
+
+
 }

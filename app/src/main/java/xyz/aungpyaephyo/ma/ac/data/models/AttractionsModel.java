@@ -35,6 +35,8 @@ public class AttractionsModel extends ViewModel {
         EventBus.getDefault().register(this);
 
         mDataAgent.loadAttractions();
+
+
     }
 
     public void initDatabase(Context context) {
@@ -54,10 +56,11 @@ public class AttractionsModel extends ViewModel {
         AppDatabase.destroyInstance();
     }
 
-    @Subscribe(threadMode = ThreadMode.BACKGROUND)
+    @Subscribe(threadMode = ThreadMode.MAIN)
     public void onAttractionsLoadedEvent(DataEvent.AttractionsLoadedEvent event) {
         mAppDatabase.attractionsDao().deleteAll();
-        long[] insertedIds = mAppDatabase.attractionsDao().insertAttractions(event.getAttractionList().toArray(new AttractionVO[0]));
+        long[] insertedIds = mAppDatabase.attractionsDao()
+                .insertAttractions(event.getAttractionList().toArray(new AttractionVO[0]));
         Log.d(MAApp.TAG, "Total inserted count : " + insertedIds.length);
     }
 }
