@@ -1,5 +1,4 @@
 apply plugin: 'com.android.application'
-apply plugin: 'com.neenbedankt.android-apt'
 
 android {
     compileSdkVersion 25
@@ -33,7 +32,7 @@ dependencies {
     testCompile 'junit:junit:4.12'
 
     compile 'com.jakewharton:butterknife:8.1.0'
-    apt 'com.jakewharton:butterknife-compiler:8.1.0'
+    annotationProcessor 'com.jakewharton:butterknife-compiler:8.1.0'
 
     compile 'com.google.code.gson:gson:2.7'
     compile 'com.github.bumptech.glide:glide:3.7.0'
@@ -47,7 +46,6 @@ dependencies {
     compile 'android.arch.lifecycle:extensions:1.0.0-alpha1'
     annotationProcessor 'android.arch.lifecycle:compiler:1.0.0-alpha1'
 
-    apt "android.arch.persistence.room:compiler:1.0.0-alpha1"
     compile 'android.arch.persistence.room:runtime:1.0.0-alpha1'
     annotationProcessor 'android.arch.persistence.room:compiler:1.0.0-alpha1'
 }

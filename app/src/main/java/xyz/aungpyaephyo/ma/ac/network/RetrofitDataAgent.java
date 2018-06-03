@@ -1,5 +1,7 @@
 package xyz.aungpyaephyo.ma.ac.network;
 
+import android.util.Log;
+
 import com.google.gson.Gson;
 
 import org.greenrobot.eventbus.EventBus;
@@ -50,20 +52,23 @@ public class RetrofitDataAgent implements AttractionDataAgent {
 
     @Override
     public void loadAttractions() {
-        Call<AttractionListResponse> loadAttractionCall = theApi.loadAttractions(AppConstants.ACCESS_TOKEN);
-        loadAttractionCall.enqueue(new Callback<AttractionListResponse>() {
+        Call<String> loadAttractionCall = theApi.loadAttractions(AppConstants.ACCESS_TOKEN);
+        loadAttractionCall.enqueue(new Callback<String>() {
             @Override
-            public void onResponse(Call<AttractionListResponse> call, Response<AttractionListResponse> response) {
+            public void onResponse(Call<String> call, Response<String> response) {
+                Log.d("", "Response : "+response);
+                /*
                 AttractionListResponse attractionListResponse = response.body();
                 if (attractionListResponse == null) {
                     EventBus.getDefault().post(new DataEvent.AttractionsLoadedEmptyEvent());
                 } else {
                     EventBus.getDefault().post(new DataEvent.AttractionsLoadedEvent(attractionListResponse.getAttractionList()));
                 }
+                */
             }
 
             @Override
-            public void onFailure(Call<AttractionListResponse> call, Throwable throwable) {
+            public void onFailure(Call<String> call, Throwable throwable) {
                 EventBus.getDefault().post(new DataEvent.AttractionsLoadedErrorEvent(throwable.getMessage()));
             }
         });

@@ -1,5 +1,6 @@
 package xyz.aungpyaephyo.ma.ac.data.vo;
 
+import android.arch.persistence.room.ColumnInfo;
 import android.arch.persistence.room.Entity;
 import android.arch.persistence.room.PrimaryKey;
 import android.arch.persistence.room.TypeConverters;
@@ -22,6 +23,7 @@ public class AttractionVO {
     private String title;
 
     @SerializedName("desc")
+    @ColumnInfo(name = "description")
     private String desc;
 
     @SerializedName("images")

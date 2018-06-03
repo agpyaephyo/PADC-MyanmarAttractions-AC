@@ -14,6 +14,6 @@ public interface AttractionApi {
 
     @FormUrlEncoded
     @POST(AppConstants.API_GET_ATTRACTION_LIST)
-    Call<AttractionListResponse> loadAttractions(
+    Call<String> loadAttractions(
             @Field(AppConstants.PARAM_ACCESS_TOKEN) String param);
 }
